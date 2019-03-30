@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
+using System.Web.Mvc;
 
 namespace ExemploValidacao.Models
 {
@@ -20,6 +21,7 @@ namespace ExemploValidacao.Models
         [RegularExpression(@"/^[a-z0-9.]+@[a-z0-9]+\.[a-z]+\.([a-z]+)?$/i",ErrorMessage = "Email errado")]
         public string Email { get; set; }
 
+        [Remote("LoginUnico","Pessoa",ErrorMessage ="Esse nome de login já existe")]
         public string Login { get; set; }
 
         public string Senha { get; set; }

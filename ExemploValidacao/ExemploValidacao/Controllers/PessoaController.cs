@@ -1,6 +1,7 @@
 ﻿using ExemploValidacao.Models;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -44,7 +45,16 @@ namespace ExemploValidacao.Controllers
         }
 
 
+        public ActionResult LoginUnico(string login) {
 
+            var bacnoDeNome = new Collection<string>
+            {
+                "Cleyton",
+                "Anderson",
+                "Renata"
+            };
+            return Json(bacnoDeNome.All(x => x.ToLower() != login.ToLower()),JsonRequestBehavior.AllowGet);
+        }
 
 
 
