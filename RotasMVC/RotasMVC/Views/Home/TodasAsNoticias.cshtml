@@ -1,21 +1,9 @@
-﻿@model  IEnumerable<RotasMVC.Models.Noticia>
+﻿@model IEnumerable<RotasMVC.Models.Noticia>
 
-@{
-    ViewBag.Title = "Rotas e asp.net em mvc";
-
+    ViewBag.Title = "TodasAsNoticias";
 }
 
-<div>
-    <ul>
-        @foreach (var item in ViewBag.Categorias)
-        {
-
-            <li>
-                @Html.ActionLink(item, "MostraCategoria", "Home", new { @categoria = item }, null)
-            </li>
-        }
-    </ul>
-</div>
+<h2>TodasAsNoticias</h2>
 
 <div>
     <ul>
@@ -36,9 +24,4 @@
 
         }
     </ul>
-</div>
-
-<div>
-    @Html.ActionLink("Todas as Noticias", "TodasNoticias", "Home")
-
 </div>

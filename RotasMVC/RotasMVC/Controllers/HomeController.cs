@@ -9,6 +9,8 @@ namespace RotasMVC.Controllers
 {
     public class HomeController : Controller
     {
+        private readonly IEnumerable<Noticia> TodasNoticias;
+
         public ActionResult Index()
         {
             var ultilmasNoticias = TodasNoticias.Take(3);
@@ -20,19 +22,17 @@ namespace RotasMVC.Controllers
             return View(ultilmasNoticias);
         }
 
-        public ActionResult About()
-        {
-            ViewBag.Message = "Your application description page.";
-
-            return View();
+        public ActionResult TodasAsNoticias() {
+            return View(TodasNoticias);
         }
 
-        public ActionResult Contact()
-        {            ViewBag.Message = "Your contact page.";
+        public ActionResult MostraNoticia(int NoticiaId, string titulo, string categoria ) {
 
-            return View();
+            return View(TodasNoticias.FirstOrDefault(x => x.NoticiaId == NoticiaId));
         }
-        private readonly IEnumerable<Noticia> TodasNoticias;
+
+
+
 
         public HomeController() {
             TodasNoticias = new Noticia().TodasNoticias().OrderByDescending(n => n.Data);
