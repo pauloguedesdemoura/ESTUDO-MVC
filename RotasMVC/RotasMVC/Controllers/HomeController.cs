@@ -1,4 +1,5 @@
-﻿using System;
+﻿using RotasMVC.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -10,7 +11,13 @@ namespace RotasMVC.Controllers
     {
         public ActionResult Index()
         {
-            return View();
+            var ultilmasNoticias = TodasNoticias.Take(3);
+
+            var todasCategoria = TodasNoticias.Select(x => x.Categoria).Distinct().ToList();
+
+            ViewBag.Categorias = todasCategoria;
+
+            return View(ultilmasNoticias);
         }
 
         public ActionResult About()
@@ -21,10 +28,15 @@ namespace RotasMVC.Controllers
         }
 
         public ActionResult Contact()
-        {
-            ViewBag.Message = "Your contact page.";
+        {            ViewBag.Message = "Your contact page.";
 
             return View();
         }
+        private readonly IEnumerable<Noticia> TodasNoticias;
+
+        public HomeController() {
+            TodasNoticias = new Noticia().TodasNoticias().OrderByDescending(n => n.Data);
+        }
+
     }
 }
